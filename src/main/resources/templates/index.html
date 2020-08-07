@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -50,6 +50,15 @@
     </tbody>
     <script>
         createTable();
+    </script>
+    <script  th:inline="javascript">
+        let dayOfWeek, hour, cell;
+        [# th:each="meeting:${meetings}"]
+            dayOfWeek = [[${meeting.getStartTime().getDayOfWeek().getValue()}]]
+            hour = [[${meeting.getStartTime().getHour()}]]
+            cell = document.getElementById('mainTable').rows[hour + 1].cells[dayOfWeek];
+            cell.innerHTML = [[${meeting.title}]];
+        [/]
     </script>
 </table>
 </body>
