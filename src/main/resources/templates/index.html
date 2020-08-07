@@ -11,8 +11,22 @@
         th, td {
             padding:5px
         }
+
     </style>
-</head>
+    <script>
+        function createTable() {
+            let table = document.getElementById('mainTable')
+            for (let hours = 0; hours < 25; hours++) {
+                let row = table.insertRow();
+                let cell = row.insertCell();
+                cell.innerHTML = hours + ":00";
+                for (let dayOfWeek = 1; dayOfWeek < 7; dayOfWeek++) {
+                    row.insertCell();
+                }
+            }
+        }
+    </script>
+    </head>
 <body style="background-color:#76484b; color:#f4e3eb">
 <table style="width:100%">
     <tr>
@@ -20,7 +34,7 @@
         <td style="text-align:right"><h2>Username</h2></td>
     </tr>
 </table>
-<table style="width:100%; text-align:center; font-weight:bold; font-size:1.2em;">
+<table id="mainTable" style="width:100%; text-align:center; font-weight:bold; font-size:1.2em;">
     <thead>
     <tr>
         <th>Time</th>
@@ -33,79 +47,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>01:00</td>
-    </tr>
-    <tr>
-        <td>02:00</td>
-    </tr>
-    <tr>
-        <td>03:00</td>
-    </tr>
-    <tr>
-        <td>04:00</td>
-    </tr>
-    <tr>
-        <td>05:00</td>
-    </tr>
-    <tr>
-        <td>06:00</td>
-    </tr>
-    <tr>
-        <td>07:00</td>
-    </tr>
-    <tr>
-        <td>08:00</td>
-    </tr>
-    <tr>
-        <td>09:00</td>
-    </tr>
-    <tr>
-        <td>10:00</td>
-    </tr>
-    <tr>
-        <td>11:00</td>
-    </tr>
-    <tr>
-        <td>12:00</td>
-    </tr>
-    <tr>
-        <td>13:00</td>
-    </tr>
-    <tr>
-        <td>14:00</td>
-    </tr>
-    <tr>
-        <td>15:00</td>
-    </tr>
-    <tr>
-        <td>16:00</td>
-    </tr>
-    <tr>
-        <td>17:00</td>
-    </tr>
-    <tr>
-        <td>18:00</td>
-    </tr>
-    <tr>
-        <td>19:00</td>
-    </tr>
-    <tr>
-        <td>20:00</td>
-    </tr>
-    <tr>
-        <td>21:00</td>
-    </tr>
-    <tr>
-        <td>22:00</td>
-    </tr>
-    <tr>
-        <td>23:00</td>
-    </tr>
-    <tr>
-        <td>24:00</td>
-    </tr>
     </tbody>
+    <script>
+        createTable();
+    </script>
 </table>
 </body>
 </html>
