@@ -1,7 +1,10 @@
 package ru.yurima.meetingroom.entities;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +68,9 @@ public class Meeting {
 
     public void setParticipants(List<String> participants) {
         this.participants = participants;
+    }
+
+    public String getShortDescription() {
+        return title + System.lineSeparator() + participants;
     }
 }

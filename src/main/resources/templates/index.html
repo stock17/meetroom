@@ -3,41 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        table, th, td {
-            border: 1px solid yellow;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding:5px
-        }
-
-    </style>
+    <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css" >
     <script>
         function createTable() {
             let table = document.getElementById('mainTable')
             for (let hours = 0; hours < 25; hours++) {
                 let row = table.insertRow();
-                let cell = row.insertCell();
-                cell.innerHTML = hours + ":00";
+                let timeCell = row.insertCell();
+                timeCell.innerHTML = hours + ":00";
                 for (let dayOfWeek = 1; dayOfWeek < 7; dayOfWeek++) {
-                    row.insertCell();
+                    eventCell = row.insertCell();
+                    eventCell.classList.add("eventCell");
                 }
             }
         }
     </script>
     </head>
-<body style="background-color:#76484b; color:#f4e3eb">
-<table style="width:100%">
+<body>
+<table>
     <tr>
         <td><h1>Meet Room</h1></td>
         <td style="text-align:right"><h2>Username</h2></td>
     </tr>
 </table>
-<table id="mainTable" style="width:100%; text-align:center; font-weight:bold; font-size:1.2em;">
+<table id="mainTable" class="calendarTable">
     <thead>
     <tr>
-        <th>Time</th>
+        <th width="10%">Time</th>
         <th>Monday</th>
         <th>Tuesday</th>
         <th>Wednesday</th>
@@ -57,7 +49,10 @@
             dayOfWeek = [[${meeting.getStartTime().getDayOfWeek().getValue()}]]
             hour = [[${meeting.getStartTime().getHour()}]]
             cell = document.getElementById('mainTable').rows[hour + 1].cells[dayOfWeek];
-            cell.innerHTML = [[${meeting.title}]];
+            cell.innerHTML = [[${meeting.getShortDescription()}]];
+            cell.id = [[${meeting.id}]];
+            cell.classList.add("busyCell");
+<!--            cell.rowSpan = "2";-->
         [/]
     </script>
 </table>

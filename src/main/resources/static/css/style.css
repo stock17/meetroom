@@ -1,0 +1,44 @@
+body {
+    background-color:#76484b;
+    color:#f4e3eb;
+}
+
+table {
+    width:100%;
+}
+
+table, th, td {
+    border: 1px solid yellow;
+}
+
+th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+td {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.calendarTable {
+    width:100%;
+    table-layout: fixed ;
+    text-align:center;
+    font-weight:bold;
+    font-size:1.2em;
+}
+
+.eventCell {
+    font-weight: normal;
+    font-size:0.7em;
+    white-space:pre;
+    margin:5px;
+}
+
+.busyCell {
+    color:black;
+    background-color:#f4e3eb;
+}
+
+
