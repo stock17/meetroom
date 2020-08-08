@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -15,7 +14,7 @@ public class AppUser implements UserDetails {
     private long id;
     private String username;
     private String password;
-    @Convert(converter = CollectionGrantedAuthorityConverter.class)
+    @Convert(converter = GrantedAuthorityCollectionConverter.class)
     private Collection<GrantedAuthority> authorities;
     boolean accountNonExpired;
     boolean accountNonLocked;
