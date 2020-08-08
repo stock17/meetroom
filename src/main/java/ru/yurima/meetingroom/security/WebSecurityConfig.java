@@ -29,9 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
+
+//    @Bean
+//    @Override
+    public UserDetailsService userDDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("user")
