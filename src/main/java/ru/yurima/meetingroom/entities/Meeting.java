@@ -1,5 +1,7 @@
 package ru.yurima.meetingroom.entities;
 
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -72,5 +74,13 @@ public class Meeting {
 
     public String getShortDescription() {
         return title + System.lineSeparator() + participants;
+    }
+
+    public String getFullDescription() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return title + System.lineSeparator() +
+                "start: " + startTime.format(formatter) + System.lineSeparator() +
+                "end: " + endTime.format(formatter)  + System.lineSeparator() +
+                "participants: " + participants;
     }
 }

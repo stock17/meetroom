@@ -29,7 +29,7 @@ td {
     font-size:1.2em;
 }
 
-.eventCell {
+.emptyCell {
     font-weight: normal;
     font-size:0.7em;
     white-space:pre;
@@ -39,6 +39,7 @@ td {
 .busyCell {
     color:black;
     background-color:#f4e3eb;
+
 }
 
 

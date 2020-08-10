@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css" >
+
     <script>
         function createTable() {
             let table = document.getElementById('mainTable')
@@ -12,18 +13,19 @@
                 let timeCell = row.insertCell();
                 timeCell.innerHTML = hours + ":00";
                 for (let dayOfWeek = 1; dayOfWeek < 7; dayOfWeek++) {
-                    eventCell = row.insertCell();
-                    eventCell.classList.add("eventCell");
+                    emptyCell = row.insertCell();
+                    emptyCell.classList.add("emptyCell");
                 }
             }
         }
     </script>
+
     </head>
 <body>
 <table>
     <tr>
         <td><h1>Meet Room</h1></td>
-        <td style="text-align:right"><h2>Username</h2></td>
+        <td style="text-align:right"><h2 th:text="${username}">Username</h2></td>
     </tr>
 </table>
 <table id="mainTable" class="calendarTable">
@@ -52,7 +54,9 @@
             cell.innerHTML = [[${meeting.getShortDescription()}]];
             cell.id = [[${meeting.id}]];
             cell.classList.add("busyCell");
-<!--            cell.rowSpan = "2";-->
+            cell.onclick = (cell) => {
+                alert([[${meeting.getFullDescription()}]]);
+            };
         [/]
     </script>
 </table>
