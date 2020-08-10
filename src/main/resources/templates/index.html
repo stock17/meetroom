@@ -40,13 +40,21 @@
 <table id="mainTable" class="calendarTable">
     <thead>
     <tr>
-        <th width="10%">Time</th>
-        <th>Monday</th>
+        <th width="10%" rowspan="2">Time</th>
+        <th >Monday</th>
         <th>Tuesday</th>
         <th>Wednesday</th>
         <th>Thursday</th>
         <th>Friday</th>
         <th>Saturday</th>
+    </tr>
+    <tr>
+        <th th:text="${firstDayOfWeek.toString()}">01-01-2020</th>
+        <th th:text="${firstDayOfWeek.plusDays(1)}">01-01-2020</th>
+        <th th:text="${firstDayOfWeek.plusDays(2)}">01-01-2020</th>
+        <th th:text="${firstDayOfWeek.plusDays(3)}">01-01-2020</th>
+        <th th:text="${firstDayOfWeek.plusDays(4)}">01-01-2020</th>
+        <th th:text="${firstDayOfWeek.plusDays(5)}">01-01-2020</th>
     </tr>
     </thead>
     <tbody>

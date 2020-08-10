@@ -5,9 +5,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.yurima.meetingroom.entities.Meeting;
 import ru.yurima.meetingroom.repositories.MeetingRepository;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +23,7 @@ public class MainController {
     MeetingRepository meetingRepository;
 
     @GetMapping("/")
-    public String main(Model model, Authentication auth) {
+    public String main(Model model, Authentication auth, @RequestParam (required = false) String firstDayOfWeek) {
         // FOr testing
         // ------------------------------------------------------------------------------------------------
         LocalDateTime startTime = LocalDateTime.of(2020, 8, 10, 11, 00);
@@ -34,11 +37,21 @@ public class MainController {
         meeting1.setId(2);
         //-------------------------------------------------------------------------------------------------
 
+        LocalDate currentFirstDayOfWeek;
+
+        if (firstDayOfWeek == null) {
+            currentFirstDayOfWeek = LocalDate.now().with(DayOfWeek.MONDAY);
+        } else {
+            currentFirstDayOfWeek = LocalDate.parse(firstDayOfWeek).with(DayOfWeek.MONDAY);
+        }
+
         List<Meeting> list = meetingRepository.findAll();
         list.add(meeting1);
         list.add(meeting);
+
         model.addAttribute("meetings", list);
         model.addAttribute("username", auth.getName());
+        model.addAttribute("firstDayOfWeek", currentFirstDayOfWeek);
         return "index";
     }
 }
