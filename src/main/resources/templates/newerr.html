@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link th:href="@{../css/new.css}" rel="stylesheet" type="text/css" href="../static/css/new.css">
+    <title>Error</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2 th:text="${exception.getMessage()}"></h2>
+</body>
+</html>
