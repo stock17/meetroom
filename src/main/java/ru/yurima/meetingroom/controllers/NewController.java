@@ -7,13 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import ru.yurima.meetingroom.entities.AppUser;
 import ru.yurima.meetingroom.entities.Meeting;
 import ru.yurima.meetingroom.repositories.AppUserRepository;
 import ru.yurima.meetingroom.repositories.MeetingRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -47,7 +46,7 @@ public class NewController {
         return new ModelAndView("redirect:/");
     }
 
-    public Meeting validateAndCreate(String name, String startTime, String endTime, String user){
+    public Meeting validateAndCreate(String name, String startTime, String endTime, String user) {
         if (Objects.isNull(name) || name.isBlank())
             throw new IllegalArgumentException("Name must not be empty");
 
@@ -57,6 +56,15 @@ public class NewController {
 
         if (start.isAfter(end) || duration <= 30 || duration >= 24 * 60)
             throw new IllegalArgumentException("Duration should be between 30 minutes and 24 hours");
+
+        List<Meeting> intersectedMeetings = meetingRepository.findIntersectedByTime(start, end);
+        if (intersectedMeetings.size() > 0) {
+            StringBuilder message = new StringBuilder("This time is busy by meetings: ");
+            for(Meeting m : intersectedMeetings) {
+                message.append(m.getName()).append(", ");
+            }
+            throw new IllegalArgumentException(message.substring(0, message.length() - 2));
+        }
 
         if (Objects.isNull(user) || user.isBlank())
             throw new IllegalArgumentException("Creator must not be empty");

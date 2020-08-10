@@ -12,4 +12,9 @@ public interface MeetingRepository extends JpaRepository<Meeting, Long> {
 
     @Query("SELECT m FROM Meeting m WHERE m.startTime BETWEEN :startDate AND :endDate")
     public List<Meeting> findBetweenDates(LocalDateTime startDate, LocalDateTime endDate);
+
+    @Query("SELECT m FROM Meeting m WHERE (m.startTime BETWEEN :startTime AND :endTime)" +
+    "OR (m.endTime BETWEEN :startTime AND :endTime)")
+    public List<Meeting> findIntersectedByTime(LocalDateTime startTime, LocalDateTime endTime);
 }
+
