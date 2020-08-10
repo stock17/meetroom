@@ -15,6 +15,15 @@
                 for (let dayOfWeek = 1; dayOfWeek < 7; dayOfWeek++) {
                     emptyCell = row.insertCell();
                     emptyCell.classList.add("emptyCell");
+                    emptyCell.onclick = () => {
+                        let result = confirm("Do you want to create a new event?");
+                        if( result == true ) {
+                            let url = "/new";
+                            document.location.href = url, true;
+                            return true;
+                        }
+                        return false;
+                    }
                 }
             }
         }

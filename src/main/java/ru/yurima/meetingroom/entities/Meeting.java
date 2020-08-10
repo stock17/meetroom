@@ -1,10 +1,6 @@
 package ru.yurima.meetingroom.entities;
 
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,14 +12,14 @@ public class Meeting {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String title;
+    private String name;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     @ElementCollection
     private List<String> participants = new ArrayList<>();
 
-    public Meeting(String title, LocalDateTime startTime, LocalDateTime endTime, List<String> participants) {
-        this.title = title;
+    public Meeting(String name, LocalDateTime startTime, LocalDateTime endTime, List<String> participants) {
+        this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
         this.participants = participants;
@@ -40,12 +36,12 @@ public class Meeting {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getStartTime() {
@@ -73,12 +69,12 @@ public class Meeting {
     }
 
     public String getShortDescription() {
-        return title + System.lineSeparator() + participants;
+        return name + System.lineSeparator() + participants;
     }
 
     public String getFullDescription() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return title + System.lineSeparator() +
+        return name + System.lineSeparator() +
                 "start: " + startTime.format(formatter) + System.lineSeparator() +
                 "end: " + endTime.format(formatter)  + System.lineSeparator() +
                 "participants: " + participants;
