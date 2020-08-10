@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css" >
+
+
 
     <script>
         function createTable() {
-            let table = document.getElementById('mainTable')
+            let tablebody = document.getElementById('mainTable').getElementsByTagName('tbody')[0]
             for (let hours = 0; hours < 25; hours++) {
-                let row = table.insertRow();
+                let row = tablebody.insertRow();
                 let timeCell = row.insertCell();
                 timeCell.innerHTML = hours + ":00";
                 for (let dayOfWeek = 1; dayOfWeek < 7; dayOfWeek++) {
@@ -33,7 +41,7 @@
 <body>
 <table>
     <tr>
-        <td><h1>Meet Room</h1></td>
+        <td><h1 style="text-align:left">Meet Room</h1></td>
         <td style="text-align:right"><h2 th:text="${username}">Username</h2></td>
     </tr>
 </table>
@@ -58,10 +66,10 @@
     </tr>
     </thead>
     <tbody>
-    </tbody>
     <script>
         createTable();
     </script>
+    </tbody>
     <script  th:inline="javascript">
         let dayOfWeek, hour, cell;
         [# th:each="meeting:${meetings}"]
@@ -77,5 +85,9 @@
         [/]
     </script>
 </table>
+<ul class="pager">
+    <li><a href="#" th:href="'/?date=' + ${firstDayOfWeek.minusWeeks(1)}">Previous</a></li>
+    <li><a href="#" th:href="'/?date=' + ${firstDayOfWeek.plusWeeks(1)}">Next</a></li>
+</ul>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class MainController {
     MeetingRepository meetingRepository;
 
     @GetMapping("/")
-    public String main(Model model, Authentication auth, @RequestParam (required = false) String firstDayOfWeek) {
+    public String main(Model model, Authentication auth, @RequestParam (name = "date", required = false) String firstDayOfWeek) {
         // FOr testing
         // ------------------------------------------------------------------------------------------------
         LocalDateTime startTime = LocalDateTime.of(2020, 8, 10, 11, 00);
