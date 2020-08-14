@@ -1,0 +1,138 @@
+.header {	
+	width: 100%;
+	display: table;
+	margin-bottom: 50px;	
+}
+
+#logo {
+	font-size: 3em;		
+	display: table-cell;
+}
+
+#username {	
+	display: table-cell;
+	text-align: right;
+}
+
+.schedule {
+    display: grid;    	
+    grid-template-rows:
+        [days] auto
+		[dates] auto		
+		[h-line] 3px
+        [time-0000] 25px
+        [time-0030] 25px
+        [time-0100] 25px
+        [time-0130] 25px
+        [time-0200] 25px
+        [time-0230] 25px
+        [time-0300] 25px
+        [time-0330] 25px
+        [time-0400] 25px
+        [time-0430] 25px
+        [time-0500] 25px
+        [time-0530] 25px
+        [time-0600] 25px
+        [time-0630] 25px
+        [time-0700] 25px
+        [time-0730] 25px
+        [time-0800] 25px
+        [time-0830] 25px
+        [time-0900] 25px
+        [time-0930] 25px
+        [time-1000] 25px
+        [time-1030] 25px
+        [time-1100] 25px
+        [time-1130] 25px
+        [time-1200] 25px
+        [time-1230] 25px
+        [time-1300] 25px
+        [time-1330] 25px
+        [time-1400] 25px
+        [time-1430] 25px
+        [time-1500] 25px
+        [time-1530] 25px
+        [time-1600] 25px
+        [time-1630] 25px
+        [time-1700] 25px
+        [time-1730] 25px
+        [time-1800] 25px
+        [time-1830] 25px
+        [time-1900] 25px
+        [time-1930] 25px
+        [time-2000] 25px
+        [time-2030] 25px
+        [time-2100] 25px
+        [time-2130] 25px
+        [time-2200] 25px
+        [time-2230] 25px
+        [time-2300] 25px
+        [time-2330] 25px
+        [h-line] 3px
+        [end-of-day]
+        ;          
+        
+    grid-template-columns:
+        [times] 4em
+		[v-line] 3px
+        [monday] 1fr
+		[v-line] 3px
+        [tuesday] 1fr
+		[v-line] 3px
+        [wednesday] 1fr
+		[v-line] 3px
+        [thursday] 1fr
+		[v-line] 3px
+        [friday] 1fr
+		[v-line] 3px
+        [saturday] 1fr
+		[v-line] 3px
+		[end-of-week]
+}
+
+
+.time-slot {
+	font-size: 1.4em;
+	font-weight: bold;
+    grid-column: times;	
+	text-align: top;
+	
+}
+
+.date-header, 
+.day-header {
+    display: block;    
+    top: 0;    
+	padding: 0 0 0.5em;
+	text-align: center;	
+	font-weight: bold;	
+	font-size: 1.3em;
+}
+
+body {    
+    margin: 50px 5%;    
+	background-color:#76484b;
+    color:#f4e3eb;	
+}
+
+.meeting {	
+	display:block;
+	min-height: 100%;
+	overflow: hidden;
+	background: #f4e3eb;	
+    padding: .5em;
+	margin: .5em;
+    border-radius: 5px;
+    font-size: .8em;
+	color: black;
+    box-shadow:
+        rgba(255,255,255,.6) 1px 1px 0,
+        rgba(0,0,0,.3) 4px 4px 0;
+    text-align: center;
+    white-space: pre;
+}
+
+.meeting-title,
+.meeting-person {
+    display: block;
+}

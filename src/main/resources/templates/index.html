@@ -1,93 +1,117 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<meta charset="UTF-8">    
+	<title>Schedule Template</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css" >
-
-
-
-    <script>
-        function createTable() {
-            let tablebody = document.getElementById('mainTable').getElementsByTagName('tbody')[0]
-            for (let hours = 0; hours < 25; hours++) {
-                let row = tablebody.insertRow();
-                let timeCell = row.insertCell();
-                timeCell.innerHTML = hours + ":00";
-                for (let dayOfWeek = 1; dayOfWeek < 7; dayOfWeek++) {
-                    emptyCell = row.insertCell();
-                    emptyCell.classList.add("emptyCell");
-                    emptyCell.onclick = () => {
-                        let result = confirm("Do you want to create a new event?");
-                        if( result == true ) {
-                            let url = "/new";
-                            document.location.href = url, true;
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
-        }
-    </script>
-
-    </head>
+    <link th:href="@{../css/index.css}" rel="stylesheet" type="text/css" href="../static/css/index.css" >
+</head>
 <body>
-<table>
-    <tr>
-        <td><h1 style="text-align:left">Meet Room</h1></td>
-        <td style="text-align:right"><h2 th:text="${username}">Username</h2></td>
-    </tr>
-</table>
-<table id="mainTable" class="calendarTable">
-    <thead>
-    <tr>
-        <th width="10%" rowspan="2">Time</th>
-        <th >Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-    </tr>
-    <tr>
-        <th th:text="${firstDayOfWeek.toString()}">01-01-2020</th>
-        <th th:text="${firstDayOfWeek.plusDays(1)}">01-01-2020</th>
-        <th th:text="${firstDayOfWeek.plusDays(2)}">01-01-2020</th>
-        <th th:text="${firstDayOfWeek.plusDays(3)}">01-01-2020</th>
-        <th th:text="${firstDayOfWeek.plusDays(4)}">01-01-2020</th>
-        <th th:text="${firstDayOfWeek.plusDays(5)}">01-01-2020</th>
-    </tr>
-    </thead>
-    <tbody>
-    <script>
-        createTable();
-    </script>
-    </tbody>
-    <script  th:inline="javascript">
-        let dayOfWeek, hour, cell;
-        [# th:each="meeting:${meetings}"]
-            dayOfWeek = [[${meeting.getStartTime().getDayOfWeek().getValue()}]]
-            hour = [[${meeting.getStartTime().getHour()}]]
-            cell = document.getElementById('mainTable').rows[hour + 1].cells[dayOfWeek];
-            cell.innerHTML = [[${meeting.getShortDescription()}]];
-            cell.id = [[${meeting.id}]];
-            cell.classList.add("busyCell");
-            cell.onclick = (cell) => {
-                alert([[${meeting.getFullDescription()}]]);
-            };
-        [/]
-    </script>
-</table>
+<div class="header">
+	<h2 id="logo">Meeting Room</h2>
+	<h2 id="username" th:text="${username}">Username</h2>
+</div>
+<div class="schedule" id="schedule">
+    
+    <span class="day-header" aria-hidden="true" style="grid-column: monday; grid-row: days;">Monday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: tuesday; grid-row: days;">Tuesday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: wednesday; grid-row: days;">Wednesday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: thursday; grid-row: days;">Thursday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: friday; grid-row: days;">Friday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: saturday; grid-row: days;">Saturday</span>
+	
+	<span class="date-header" th:text="${firstDayOfWeek}" aria-hidden="true" style="grid-column: monday; grid-row: dates;">10.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(1)}" aria-hidden="true" style="grid-column: tuesday; grid-row: dates;">11.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(2)}" aria-hidden="true" style="grid-column: wednesday; grid-row: dates;">12.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(3)}" aria-hidden="true" style="grid-column: thursday; grid-row: dates;">13.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(4)}" aria-hidden="true" style="grid-column: friday; grid-row: dates;">14.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(5)}" aria-hidden="true" style="grid-column: saturday; grid-row: dates;">15.08.2020</span>
+	
+	
+	<div class="h-line" style="grid-row: h-line 1; grid-column: monday / end-of-week; background: #f4e3eb"></div>
+	<div class="h-line" style="grid-row: h-line 2; grid-column: monday / end-of-week; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 1; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 2; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 3; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 4; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 5; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 6; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+	<div class="v-line" style="grid-column: v-line 7; grid-row: time-0000 / end-of-day; background: #f4e3eb"></div>
+    
+    <span class="time-slot" style="grid-row: time-0000;">00:00</span>
+    <span class="time-slot" style="grid-row: time-0100;">01:00</span>
+    <span class="time-slot" style="grid-row: time-0200;">02:00</span>
+    <span class="time-slot" style="grid-row: time-0300;">03:00</span>
+    <span class="time-slot" style="grid-row: time-0400;">04:00</span>
+    <span class="time-slot" style="grid-row: time-0500;">05:00</span>
+    <span class="time-slot" style="grid-row: time-0600;">06:00</span>
+    <span class="time-slot" style="grid-row: time-0700;">07:00</span>
+    <span class="time-slot" style="grid-row: time-0800;">08:00</span>
+    <span class="time-slot" style="grid-row: time-0900;">09:00</span>
+    <span class="time-slot" style="grid-row: time-1000;">10:00</span>
+    <span class="time-slot" style="grid-row: time-1100;">11:00</span>
+    <span class="time-slot" style="grid-row: time-1200;">12:00</span>
+    <span class="time-slot" style="grid-row: time-1300;">13:00</span>
+    <span class="time-slot" style="grid-row: time-1400;">14:00</span>
+    <span class="time-slot" style="grid-row: time-1500;">15:00</span>
+    <span class="time-slot" style="grid-row: time-1600;">16:00</span>
+	<span class="time-slot" style="grid-row: time-1700;">17:00</span>
+	<span class="time-slot" style="grid-row: time-1800;">18:00</span>
+	<span class="time-slot" style="grid-row: time-1900;">19:00</span>
+	<span class="time-slot" style="grid-row: time-2000;">20:00</span>
+	<span class="time-slot" style="grid-row: time-2100;">21:00</span>
+	<span class="time-slot" style="grid-row: time-2200;">22:00</span>
+	<span class="time-slot" style="grid-row: time-2300;">23:00</span>
+
+    <div class="meeting" style="grid-column: monday; grid-row: time-0800 / span 2">
+        <span class="meeting-title">Test Title</span>
+        <span class="meeting-person">alexei.stratonov</span>
+        <span class="meeting-person">ivan.filippov</span>        
+    </div>    
+	
+
+    </div>
+</div>
+
 <ul class="pager">
     <li><a href="#" th:href="'/?date=' + ${firstDayOfWeek.minusWeeks(1)}">Previous</a></li>
     <li><a href="#" th:href="'/?date=' + ${firstDayOfWeek.plusWeeks(1)}">Next</a></li>
 </ul>
+
+<script  th:inline="javascript">
+        let dayOfWeek, hour, newMeeting, newContent;
+        [# th:each="meeting:${meetings}"]
+            dayOfWeek = [[${meeting.getStartTime().getDayOfWeek().toString().toLowerCase()}]];
+            startHour = [[${meeting.getStartTime().getHour()}]];
+            startMinute = [[${meeting.getStartTime().getMinute()}]];
+            if (startMinute < 30) {
+                startMinute = "00";
+            } else {
+                startMinute = "30";
+            }
+            startTime = "time-" + startHour + startMinute;
+
+            endHour = [[${meeting.getEndTime().getHour()}]];
+            endMinute = [[${meeting.getEndTime().getMinute()}]];
+            if (endMinute < 30) {
+                endMinute = "00";
+            } else {
+                endMinute = "30";
+            }
+            endTime = "time-" + endHour + endMinute;
+
+            newMeeting = document.createElement("div");
+            newMeeting.classList.add("meeting");
+            newMeeting.style.cssText = "grid-column: " + dayOfWeek + "; grid-row: " + startTime + " / " + endTime;
+            newMeeting.innerHTML = [[${meeting.getShortDescription()}]];
+
+<!--             newContent = document.createElement("span");-->
+<!--             newMeeting.appendChild(newContent);-->
+
+             document.getElementById("schedule").appendChild(newMeeting);
+        [/]
+    </script>
+
 </body>
-</html>
