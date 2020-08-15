@@ -13,13 +13,15 @@ public class Meeting {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
+    private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     @Convert(converter = StringListConverter.class)
     private List<String> participants = new ArrayList<>();
 
-    public Meeting(String title, LocalDateTime startTime, LocalDateTime endTime, List<String> participants) {
+    public Meeting(String title, String description, LocalDateTime startTime, LocalDateTime endTime, List<String> participants) {
         this.title = title;
+        this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.participants = participants;
@@ -68,19 +70,11 @@ public class Meeting {
         this.participants = participants;
     }
 
-    public String getShortDescription() {
-        StringBuilder builder = new StringBuilder(title);
-        for (String p : participants) {
-            builder.append(System.lineSeparator()).append(p);
-        }
-        return builder.toString();
+    public String getDescription() {
+        return description;
     }
 
-    public String getFullDescription() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return title + System.lineSeparator() +
-                "start: " + startTime.format(formatter) + System.lineSeparator() +
-                "end: " + endTime.format(formatter)  + System.lineSeparator() +
-                "participants: " + participants;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

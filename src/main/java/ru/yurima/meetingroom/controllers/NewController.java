@@ -37,16 +37,17 @@ public class NewController {
 
     @PostMapping("/new")
     public ModelAndView saveNewMeeting(@RequestParam  (name = "title")  String title,
+                                        @RequestParam (name = "description") String description,
                                         @RequestParam (name = "start-time") String  startTime,
                                         @RequestParam (name = "end-time") String endTime,
                                         @RequestParam (name = "participants") String participants) throws IOException {
 
-        Meeting meeting = validateAndCreate(title, startTime, endTime, participants);
+        Meeting meeting = validateAndCreate(title, description, startTime, endTime, participants);
         meetingRepository.save(meeting);
         return new ModelAndView("redirect:/");
     }
 
-    public Meeting validateAndCreate(String name, String startTime, String endTime, String participants) {
+    public Meeting validateAndCreate(String name, String description, String startTime, String endTime, String participants) {
         if (Objects.isNull(name) || name.isBlank())
             throw new IllegalArgumentException("Name must not be empty");
 
@@ -69,7 +70,7 @@ public class NewController {
         if (Objects.isNull(participants) || participants.isBlank())
             throw new IllegalArgumentException("There should be at least 1 participant");
         List<String> participantList = List.of( participants.split("\\r\\n?|\\n") );
-        return new Meeting(name, start, end, participantList);
+        return new Meeting(name, description, start, end, participantList);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
