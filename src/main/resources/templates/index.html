@@ -76,8 +76,9 @@
 </div>
 
 <ul class="pager">
-    <li><a href="#" th:href="'/?date=' + ${firstDayOfWeek.minusWeeks(1)}">Previous</a></li>
-    <li><a href="#" th:href="'/?date=' + ${firstDayOfWeek.plusWeeks(1)}">Next</a></li>
+    <li ><a style="width: 10em;" href="#" th:href="'/?date=' + ${firstDayOfWeek.minusWeeks(1)}">Previous</a></li>
+    <li style="margin: 0 .5em;"><a style="width: 8em; background-color: #1183ca; color: white;" href="#" th:href="@{/new}">Create</a></li>
+    <li><a style="width: 10em;" href="#" th:href="'/?date=' + ${firstDayOfWeek.plusWeeks(1)}">Next</a></li>
 </ul>
 
 <script  th:inline="javascript">
