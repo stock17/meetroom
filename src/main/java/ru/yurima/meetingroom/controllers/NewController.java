@@ -36,17 +36,17 @@ public class NewController {
     }
 
     @PostMapping("/new")
-    public ModelAndView saveNewMeeting(@RequestParam  (name = "name")  String name,
+    public ModelAndView saveNewMeeting(@RequestParam  (name = "title")  String title,
                                         @RequestParam (name = "start-time") String  startTime,
                                         @RequestParam (name = "end-time") String endTime,
-                                        @RequestParam (name = "creator") String user) throws IOException {
+                                        @RequestParam (name = "participants") String participants) throws IOException {
 
-        Meeting meeting = validateAndCreate(name, startTime, endTime, user);
+        Meeting meeting = validateAndCreate(title, startTime, endTime, participants);
         meetingRepository.save(meeting);
         return new ModelAndView("redirect:/");
     }
 
-    public Meeting validateAndCreate(String name, String startTime, String endTime, String user) {
+    public Meeting validateAndCreate(String name, String startTime, String endTime, String participants) {
         if (Objects.isNull(name) || name.isBlank())
             throw new IllegalArgumentException("Name must not be empty");
 
@@ -66,10 +66,10 @@ public class NewController {
             throw new IllegalArgumentException(message.substring(0, message.length() - 2));
         }
 
-        if (Objects.isNull(user) || user.isBlank())
-            throw new IllegalArgumentException("Creator must not be empty");
-
-        return new Meeting(name, start, end, List.of(user));
+        if (Objects.isNull(participants) || participants.isBlank())
+            throw new IllegalArgumentException("There should be at least 1 participant");
+        List<String> participantList = List.of( participants.split("\\r\\n?|\\n") );
+        return new Meeting(name, start, end, participantList);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
