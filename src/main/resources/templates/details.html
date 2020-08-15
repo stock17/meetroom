@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Details</title>
 </head>
 <body>
 <h1>Hello</h1>
+<div id="container" class="container">
+    <div class="title" id="title" th:text="${meeting.getTitle()}">Title</div>
+
+    <div class="main-part" id="main-part">
+
+        <div class="time" id="start-time" th:text="${meeting.getStartTime()}">01-01-2020 15:30</div>
+
+        <div class="time" id="end-time"th:text="${meeting.getEndTime()}">01-01-2020 16:30</div>
+
+        <div class="description" id="description" th:text="${meeting.getDescription()}"></div>
+
+        <div><ul class="participants" id="participants"></ul></div>
+
+    </div>
+
+</div>
+
+<script th:inline="javascript">
+     participantUl = document.getElementById("participants");
+     participantList = [[${meeting.getParticipants()}]];
+     participantList.forEach( (p) => {
+         let participant = document.createElement("li");
+         participant.classList.add("participant");
+         participant.innerHTML = p;
+         participantUl.appendChild(participant);
+     });
+</script>
+
+
 
 </body>
 </html>
