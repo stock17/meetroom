@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link th:href="@{../css/details.css}" rel="stylesheet" type="text/css" href="../static/css/details.css" >
 </head>
 <body>
-<h1>Hello</h1>
+
 <div id="container" class="container">
     <div class="title" id="title" th:text="${meeting.getTitle()}">Title</div>
 
     <div class="main-part" id="main-part">
 
-        <div class="time" id="start-time" th:text="${meeting.getStartTime()}">01-01-2020 15:30</div>
 
-        <div class="time" id="end-time"th:text="${meeting.getEndTime()}">01-01-2020 16:30</div>
+        <div class="time" id="start-time" th:inlinetext="text"> <label for="start-time">Starts at: </label>
+            [[${meeting.getStartTime()}]]</div>
 
-        <div class="description" id="description" th:text="${meeting.getDescription()}"></div>
 
-        <div><ul class="participants" id="participants"></ul></div>
+        <div class="time" id="end-time"th:inline="text"> <label for="end-time">Ends at: </label>
+            [[${meeting.getEndTime()}]]</div>
+
+        <div class="description" id="description" th:text="${meeting.getDescription()}">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        </div>
+
+        <div><label for="participants">Participants: </label><ul class="participants" id="participants"></ul></div>
 
     </div>
 

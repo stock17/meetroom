@@ -1,0 +1,36 @@
+
+
+.container {
+    width: 40%;
+    border: 3px solid #76484b;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 25px auto;
+
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2em;
+    flex: 0 0 30%;
+    padding: 10px;
+
+}
+
+.main-part {
+    background-color:#76484b;
+    color:#f4e3eb;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 70%;
+}
+
+.description {
+    margin: 15px 0;
+
+}
+
+
+
