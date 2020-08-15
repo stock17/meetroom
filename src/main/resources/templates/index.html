@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="UTF-8">    
 	<title>Schedule Template</title>
@@ -22,12 +22,12 @@
     <span class="day-header" aria-hidden="true" style="grid-column: friday; grid-row: days;">Friday</span>
     <span class="day-header" aria-hidden="true" style="grid-column: saturday; grid-row: days;">Saturday</span>
 	
-	<span class="date-header" th:text="${firstDayOfWeek}" aria-hidden="true" style="grid-column: monday; grid-row: dates;">10.08.2020</span>
-	<span class="date-header" th:text="${firstDayOfWeek.plusDays(1)}" aria-hidden="true" style="grid-column: tuesday; grid-row: dates;">11.08.2020</span>
-	<span class="date-header" th:text="${firstDayOfWeek.plusDays(2)}" aria-hidden="true" style="grid-column: wednesday; grid-row: dates;">12.08.2020</span>
-	<span class="date-header" th:text="${firstDayOfWeek.plusDays(3)}" aria-hidden="true" style="grid-column: thursday; grid-row: dates;">13.08.2020</span>
-	<span class="date-header" th:text="${firstDayOfWeek.plusDays(4)}" aria-hidden="true" style="grid-column: friday; grid-row: dates;">14.08.2020</span>
-	<span class="date-header" th:text="${firstDayOfWeek.plusDays(5)}" aria-hidden="true" style="grid-column: saturday; grid-row: dates;">15.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.format(dateFormatter)}" aria-hidden="true" style="grid-column: monday; grid-row: dates;">10.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(1).format(dateFormatter)}" aria-hidden="true" style="grid-column: tuesday; grid-row: dates;">11.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(2).format(dateFormatter)}" aria-hidden="true" style="grid-column: wednesday; grid-row: dates;">12.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(3).format(dateFormatter)}" aria-hidden="true" style="grid-column: thursday; grid-row: dates;">13.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(4).format(dateFormatter)}" aria-hidden="true" style="grid-column: friday; grid-row: dates;">14.08.2020</span>
+	<span class="date-header" th:text="${firstDayOfWeek.plusDays(5).format(dateFormatter)}" aria-hidden="true" style="grid-column: saturday; grid-row: dates;">15.08.2020</span>
 	
 	
 	<div class="h-line" style="grid-row: h-line 1; grid-column: monday / end-of-week; background: #f4e3eb"></div>

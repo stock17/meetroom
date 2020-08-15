@@ -12,6 +12,7 @@ import ru.yurima.meetingroom.repositories.MeetingRepository;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +38,7 @@ public class MainController {
         List<Meeting> list = meetingRepository.findBetweenDates(currentFirstDayOfWeek.atStartOfDay(),
                 currentFirstDayOfWeek.plusDays(6).atStartOfDay());
 
+        model.addAttribute("dateFormatter", DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         model.addAttribute("meetings", list);
         model.addAttribute("username", auth.getName());
         model.addAttribute("firstDayOfWeek", currentFirstDayOfWeek);
