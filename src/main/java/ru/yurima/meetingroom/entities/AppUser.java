@@ -21,6 +21,16 @@ public class AppUser implements UserDetails {
     boolean credentialNonExpired;
     boolean enabled;
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    private String fullName;
+
     public AppUser() {
     }
 

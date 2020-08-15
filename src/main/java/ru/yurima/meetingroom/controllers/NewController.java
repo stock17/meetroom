@@ -61,7 +61,7 @@ public class NewController {
         if (intersectedMeetings.size() > 0) {
             StringBuilder message = new StringBuilder("This time is busy by meetings: ");
             for(Meeting m : intersectedMeetings) {
-                message.append(m.getName()).append(", ");
+                message.append(m.getTitle()).append(", ");
             }
             throw new IllegalArgumentException(message.substring(0, message.length() - 2));
         }

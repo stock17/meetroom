@@ -67,8 +67,8 @@
 
     <div class="meeting" style="grid-column: monday; grid-row: time-0800 / span 2">
         <span class="meeting-title">Test Title</span>
-        <span class="meeting-person">alexei.stratonov</span>
-        <span class="meeting-person">ivan.filippov</span>        
+        <span class="meeting-participant">alexei.stratonov</span>
+        <span class="meeting-participant">ivan.filippov</span>
     </div>    
 	
 
@@ -102,15 +102,25 @@
             }
             endTime = "time-" + endHour + endMinute;
 
-            newMeeting = document.createElement("div");
-            newMeeting.classList.add("meeting");
-            newMeeting.style.cssText = "grid-column: " + dayOfWeek + "; grid-row: " + startTime + " / " + endTime;
-            newMeeting.innerHTML = [[${meeting.getShortDescription()}]];
+            meeting = document.createElement("div");
+            meeting.classList.add("meeting");
+            meeting.style.cssText = "grid-column: " + dayOfWeek + "; grid-row: " + startTime + " / " + endTime;
 
-<!--             newContent = document.createElement("span");-->
-<!--             newMeeting.appendChild(newContent);-->
+            meetingTitle = document.createElement("span");
+            meetingTitle.classList.add("meeting-title");
+            meetingTitle.innerHTML = [[${meeting.getTitle()}]];
+            meeting.appendChild(meetingTitle);
 
-             document.getElementById("schedule").appendChild(newMeeting);
+            let participant;
+            participants = [[${meeting.getParticipants()}]];
+            participants.forEach( (p) => {
+                participant = document.createElement("span");
+                participant.classList.add("meeting-participant");
+                participant.innerHTML = p;
+                meeting.appendChild(participant);
+            });
+
+            document.getElementById("schedule").appendChild(meeting);
         [/]
     </script>
 
