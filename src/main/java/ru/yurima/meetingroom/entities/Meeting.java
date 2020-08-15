@@ -50,12 +50,20 @@ public class Meeting {
         return startTime;
     }
 
+    public String getStartDateTimeFormat() {
+        return startTime.format(DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy"));
+    }
+
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    public String getEndDateTimeFormat() {
+        return endTime.format(DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy"));
     }
 
     public void setEndTime(LocalDateTime endTime) {
