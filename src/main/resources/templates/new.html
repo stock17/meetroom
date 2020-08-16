@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{../css/new.css}" rel="stylesheet" type="text/css" href="../static/css/new.css">
-    <title>New event</title>
+    <title th:text="#{new.title}">New event</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,27 +25,27 @@
     <form action="/new" method="post">
 
         <div class="form-group">
-            <label><h2>Create new meeting</h2></label>
+            <label><h2 th:text="#{new.form.header}">Create new meeting</h2></label>
         </div>
 
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="title" autofocus>
+            <label for="title" th:text="#{new.form.title}">Title</label>
+            <input type="text" class="form-control" id="title" name="title" autofocus>
         </div>
 
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description" th:text="#{new.form.description}">Description</label>
             <textarea id="description" class="form-control" rows="5"
-                      name="description" style="overflow:auto; resize: none" placeholder="description"></textarea>
+                      name="description" style="overflow:auto; resize: none"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="start-time">Start of the meeting</label>
+            <label for="start-time" th:text="#{new.form.start}">Start of the meeting</label>
             <input type="datetime-local" class="form-control" id="start-time"
                    name="start-time" value="2020-01-01T00:00">
         </div>
         <div class="form-group">
-            <label for="end-time">End of the meeting</label>
+            <label for="end-time" th:text="#{new.form.end}">End of the meeting</label>
             <input type="datetime-local" class="form-control" id="end-time"
                    name="end-time" value="2020-01-01T00:00">
         </div>
@@ -58,15 +58,15 @@
         </script>
 
         <div class="form-group">
-            <label for="participants">Participants</label>
+            <label for="participants" th:text="#{new.form.participants}">Participants</label>
             <textarea id="participants" class="form-control" rows="3" th:text="${user.getFullName()}"
                       name="participants" style="overflow:auto; resize: none" readonly>Uriy Simonov</textarea>
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary" th:text="#{new.form.create}">Create</button>
             <button id="add-button" type="button" style="float: right;" class="btn btn-primary" data-toggle="modal"
-                    data-target="#add-dialog">Add</button>
+                    data-target="#add-dialog" th:text="#{new.form.add}">Add</button>
         </div>
     </form>
 </div>
@@ -80,7 +80,7 @@
             </div>
             <div class="modal-body">
                     <div class="form-group">
-                        <label for="new-participant">Insert new participant</label>
+                        <label for="new-participant" th:text="#{new.modal.insertNewParticipant}">Insert new participant</label>
                         <input id="new-participant" type="text" class="form-control" autofocus/>
                     </div>
                     <div class="form-group">

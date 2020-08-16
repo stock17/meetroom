@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">    
-	<title>Schedule Template</title>
+	<title th:text="#{main.title}">Meeting Room</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -39,15 +39,18 @@
 <div class="header">
 	<h2 id="logo">Meeting Room</h2>
 	<h2 id="username" th:text="${username}">Username</h2>
+    <div class="avatar-field" id="avatar-field">
+        <div class="avatar" id="avatar">AB</div>
+    </div>
 </div>
 <div class="schedule" id="schedule">
     
-    <span class="day-header" aria-hidden="true" style="grid-column: monday; grid-row: days;">Monday</span>
-    <span class="day-header" aria-hidden="true" style="grid-column: tuesday; grid-row: days;">Tuesday</span>
-    <span class="day-header" aria-hidden="true" style="grid-column: wednesday; grid-row: days;">Wednesday</span>
-    <span class="day-header" aria-hidden="true" style="grid-column: thursday; grid-row: days;">Thursday</span>
-    <span class="day-header" aria-hidden="true" style="grid-column: friday; grid-row: days;">Friday</span>
-    <span class="day-header" aria-hidden="true" style="grid-column: saturday; grid-row: days;">Saturday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: monday; grid-row: days;" th:text="#{main.days.monday}">Monday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: tuesday; grid-row: days;" th:text="#{main.days.tuesday}">Tuesday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: wednesday; grid-row: days;" th:text="#{main.days.wednesday}">Wednesday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: thursday; grid-row: days;" th:text="#{main.days.thursday}">Thursday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: friday; grid-row: days;" th:text="#{main.days.friday}">Friday</span>
+    <span class="day-header" aria-hidden="true" style="grid-column: saturday; grid-row: days;" th:text="#{main.days.saturday}">Saturday</span>
 	
 	<span class="date-header" th:text="${firstDayOfWeek.format(dateFormatter)}" aria-hidden="true" style="grid-column: monday; grid-row: dates;">10.08.2020</span>
 	<span class="date-header" th:text="${firstDayOfWeek.plusDays(1).format(dateFormatter)}" aria-hidden="true" style="grid-column: tuesday; grid-row: dates;">11.08.2020</span>
@@ -103,9 +106,12 @@
 </div>
 
 <ul class="pager">
-    <li ><a style="width: 10em;" href="#" th:href="'/?date=' + ${firstDayOfWeek.minusWeeks(1)}">Previous</a></li>
-    <li style="margin: 0 .5em;"><a style="width: 8em; background-color: #1183ca; color: white;" href="#" th:href="@{/new}">Create</a></li>
-    <li><a style="width: 10em;" href="#" th:href="'/?date=' + ${firstDayOfWeek.plusWeeks(1)}">Next</a></li>
+    <li ><a style="width: 10em;" href="#" th:href="'/?date=' + ${firstDayOfWeek.minusWeeks(1)}"
+            th:text="#{main.command.previous}">Previous</a></li>
+    <li style="margin: 0 .5em;"><a style="width: 8em; background-color: #1183ca; color: white;"
+                                   href="#" th:href="@{/new}" th:text="#{main.command.create}">Create</a></li>
+    <li><a style="width: 10em;" href="#" th:href="'/?date=' + ${firstDayOfWeek.plusWeeks(1)}"
+           th:text="#{main.command.next}">Next</a></li>
 </ul>
 
 <script  th:inline="javascript">
@@ -149,6 +155,11 @@
 
 
         [/]
+    </script>
+
+    <script th:inline="javascript">
+        let avatar = document.getElementById('avatar');
+        avatar.innerHTML = [[${username}]].slice(0,1).toUpperCase();
     </script>
 
 </body>

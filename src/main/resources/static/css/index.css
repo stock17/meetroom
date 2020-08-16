@@ -7,12 +7,33 @@
 #logo {
 	font-size: 3em;		
 	display: table-cell;
+	vertical-align: middle;
 }
 
 #username {	
 	display: table-cell;
 	text-align: right;
+	vertical-align: middle;
 }
+
+#avatar-field {
+    display: table-cell;
+    width: 10%;
+    vertical-align: middle;
+}
+
+#avatar {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background: #f4e3eb;
+    color: #76484b;
+    border-radius: 50%;
+    margin-left: 20px;
+    text-align: center;
+    font-size: 3em;
+}
+
 
 .schedule {
     display: grid;    	
