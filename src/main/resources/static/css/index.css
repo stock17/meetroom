@@ -68,24 +68,24 @@
         [time-2230] 25px
         [time-2300] 25px
         [time-2330] 25px
+        [end-of-day] 0px
         [h-line] 3px
-        [end-of-day]
         ;          
         
     grid-template-columns:
         [times] 4em
 		[v-line] 3px
-        [monday] 1fr
+        [monday day-1] 1fr
 		[v-line] 3px
-        [tuesday] 1fr
+        [tuesday day-2] 1fr
 		[v-line] 3px
-        [wednesday] 1fr
+        [wednesday day-3] 1fr
 		[v-line] 3px
-        [thursday] 1fr
+        [thursday day-4] 1fr
 		[v-line] 3px
-        [friday] 1fr
+        [friday day-5] 1fr
 		[v-line] 3px
-        [saturday] 1fr
+        [saturday day-6] 1fr
 		[v-line] 3px
 		[end-of-week]
 }
@@ -117,7 +117,6 @@ body {
 
 .meeting {	
 	display:block;
-	min-height: 100%;
 	overflow: hidden;
 	background: #f4e3eb;	
     padding: .5em;

@@ -7,6 +7,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link th:href="@{../css/index.css}" rel="stylesheet" type="text/css" href="../static/css/index.css" >
+
+    <script>
+        function createMeetingDiv(id, title, day, startTime, endTime, participants) {
+            let meeting = document.createElement("div");
+            meeting.classList.add("meeting");
+            meeting.style.cssText = "grid-column: " + day + "; grid-row: " + startTime + " / " + endTime;
+            meeting.onclick = function() {
+                let url = "/details?id=" + id;
+                document.location.href = url, true;
+                return true;
+            }
+
+            let meetingTitle = document.createElement("span");
+            meetingTitle.classList.add("meeting-title");
+            meetingTitle.innerHTML = title;
+            meeting.appendChild(meetingTitle);
+
+            participants.forEach( (p) => {
+                let participant = document.createElement("span");
+                participant.classList.add("meeting-participant");
+                participant.innerHTML = p;
+                meeting.appendChild(participant);
+            });
+
+            document.getElementById("schedule").appendChild(meeting);
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -82,9 +109,9 @@
 </ul>
 
 <script  th:inline="javascript">
-        let dayOfWeek, hour, newMeeting, newContent, participant;
+        let day, hour, title, id;
         [# th:each="meeting:${meetings}"]
-            dayOfWeek = [[${meeting.getStartTime().getDayOfWeek().toString().toLowerCase()}]];
+            startDay = [[${meeting.getStartTime().getDayOfWeek().getValue()}]];
             startHour = [[${meeting.getStartTime().getHour()}]];
             startMinute = [[${meeting.getStartTime().getMinute()}]];
             if (startMinute < 30) {
@@ -94,6 +121,7 @@
             }
             startTime = "time-" + startHour + startMinute;
 
+            endDay = [[${meeting.getEndTime().getDayOfWeek().getValue()}]];
             endHour = [[${meeting.getEndTime().getHour()}]];
             endMinute = [[${meeting.getEndTime().getMinute()}]];
             if (endMinute < 30) {
@@ -101,31 +129,25 @@
             } else {
                 endMinute = "30";
             }
+
             endTime = "time-" + endHour + endMinute;
 
-            meeting = document.createElement("div");
-            meeting.classList.add("meeting");
-            meeting.style.cssText = "grid-column: " + dayOfWeek + "; grid-row: " + startTime + " / " + endTime;
-            meeting.onclick = function() {
-                let url = "/details?id=" + [[${meeting.getId()}]];
-                document.location.href = url, true;
-                return true;
+            id = [[${meeting.getId()}]];
+            title = [[${meeting.getTitle()}]];
+            participants = [[${meeting.getParticipants()}]];
+
+            if (startDay === endDay) {
+                day = 'day-' + startDay;
+                createMeetingDiv(id, title, day, startTime, endTime, participants)
+            } else {
+                day = 'day-' + startDay;
+                createMeetingDiv(id, title, day, startTime, 'end-of-day', participants)
+                day = 'day-' + endDay;
+                createMeetingDiv(id, title, day, 'time-0000', endTime, participants)
             }
 
-            meetingTitle = document.createElement("span");
-            meetingTitle.classList.add("meeting-title");
-            meetingTitle.innerHTML = [[${meeting.getTitle()}]];
-            meeting.appendChild(meetingTitle);
 
-            participants = [[${meeting.getParticipants()}]];
-            participants.forEach( (p) => {
-                participant = document.createElement("span");
-                participant.classList.add("meeting-participant");
-                participant.innerHTML = p;
-                meeting.appendChild(participant);
-            });
 
-            document.getElementById("schedule").appendChild(meeting);
         [/]
     </script>
 
