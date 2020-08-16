@@ -49,7 +49,7 @@ public class NewController {
 
     public Meeting validateAndCreate(String name, String description, String startTime, String endTime, String participants) {
         if (Objects.isNull(name) || name.isBlank())
-            throw new IllegalArgumentException("Name must not be empty");
+            throw new IllegalArgumentException("Title must not be empty");
 
         LocalDateTime start = LocalDateTime.parse(startTime);
         LocalDateTime end = LocalDateTime.parse(endTime);
