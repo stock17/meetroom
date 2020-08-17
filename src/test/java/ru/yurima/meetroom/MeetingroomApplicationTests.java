@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom;
+package ru.yurima.meetroom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

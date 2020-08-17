@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.entities;
+package ru.yurima.meetroom.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -7,7 +7,6 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 import java.util.*;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Converter

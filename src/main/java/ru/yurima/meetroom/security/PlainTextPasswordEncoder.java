@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.security;
+package ru.yurima.meetroom.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

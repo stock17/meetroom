@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.entities;
+package ru.yurima.meetroom.entities;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

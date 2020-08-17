@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.controllers;
+package ru.yurima.meetroom.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
-import ru.yurima.meetingroom.entities.Meeting;
-import ru.yurima.meetingroom.repositories.MeetingRepository;
+import ru.yurima.meetroom.entities.Meeting;
+import ru.yurima.meetroom.repositories.MeetingRepository;
 
 import java.util.Optional;
 

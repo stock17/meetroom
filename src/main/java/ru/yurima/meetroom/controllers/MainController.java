@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.controllers;
+package ru.yurima.meetroom.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -6,16 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.yurima.meetingroom.entities.AppUser;
-import ru.yurima.meetingroom.entities.Meeting;
-import ru.yurima.meetingroom.repositories.MeetingRepository;
+import ru.yurima.meetroom.entities.Meeting;
+import ru.yurima.meetroom.repositories.MeetingRepository;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller

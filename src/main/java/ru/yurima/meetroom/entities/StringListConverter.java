@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.entities;
+package ru.yurima.meetroom.entities;
 
 import javax.persistence.AttributeConverter;
 import java.util.List;

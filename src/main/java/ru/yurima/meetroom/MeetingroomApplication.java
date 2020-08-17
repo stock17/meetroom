@@ -1,8 +1,7 @@
-package ru.yurima.meetingroom;
+package ru.yurima.meetroom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 public class MeetingroomApplication {

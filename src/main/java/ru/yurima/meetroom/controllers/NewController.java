@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.controllers;
+package ru.yurima.meetroom.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import ru.yurima.meetingroom.entities.AppUser;
-import ru.yurima.meetingroom.entities.Meeting;
-import ru.yurima.meetingroom.repositories.AppUserRepository;
-import ru.yurima.meetingroom.repositories.MeetingRepository;
+import ru.yurima.meetroom.entities.AppUser;
+import ru.yurima.meetroom.entities.Meeting;
+import ru.yurima.meetroom.repositories.AppUserRepository;
+import ru.yurima.meetroom.repositories.MeetingRepository;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

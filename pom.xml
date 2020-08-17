@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.yurima</groupId>
-	<artifactId>meetingroom</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>meetingroom</name>
+	<artifactId>meetroom</artifactId>
+	<version>0.0.1</version>
+	<name>meetroom</name>
 	<description>Test task for Nord Clan</description>
 
 	<properties>

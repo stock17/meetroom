@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.entities;
+package ru.yurima.meetroom.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package ru.yurima.meetingroom.entities;
+package ru.yurima.meetroom.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

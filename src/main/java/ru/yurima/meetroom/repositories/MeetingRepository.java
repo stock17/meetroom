@@ -1,10 +1,9 @@
-package ru.yurima.meetingroom.repositories;
+package ru.yurima.meetroom.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.yurima.meetingroom.entities.Meeting;
+import ru.yurima.meetroom.entities.Meeting;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -1,9 +1,8 @@
-package ru.yurima.meetingroom.repositories;
+package ru.yurima.meetroom.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import ru.yurima.meetingroom.entities.AppUser;
+import ru.yurima.meetroom.entities.AppUser;
 
 import java.util.Optional;
 
