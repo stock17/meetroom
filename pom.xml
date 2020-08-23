@@ -12,7 +12,7 @@
 	<artifactId>meetroom</artifactId>
 	<version>0.0.1</version>
 	<name>meetroom</name>
-	<description>Test task for Nord Clan</description>
+	<description>Test task</description>
 
 	<properties>
 		<java.version>11</java.version>
